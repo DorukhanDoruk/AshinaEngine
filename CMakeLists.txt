@@ -43,6 +43,9 @@ add_executable(AshinaEngine
     src/app/application.cpp
     src/app/window.cpp
     src/render/renderer.cpp
+    src/render/shader.cpp
+    src/render/vertex_buffer.cpp
+    src/render/vertex_array.cpp
 )
 
 target_include_directories(AshinaEngine PRIVATE src)

@@ -13,6 +13,8 @@ public:
     void run();
 
 private:
+    // Owned by value (composition): built and destroyed with the Application.
+    // See HANDBOOK.md#composition-owning-by-value
     Window m_window;
     Renderer m_renderer;
 };
