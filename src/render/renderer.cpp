@@ -59,7 +59,7 @@ void Renderer::init(GLFWwindow* window) {
     // Pass the addresses so the function can write into width/height.
     // See HANDBOOK.md#references-and-pointers
     glfwGetFramebufferSize(window, &width, &height);
-    glViewport(0, 0, width, height); // draw across the whole window. See HANDBOOK.md#viewport
+    onResize(width, height); // startup and resize share this one viewport path
 
     // Interleaved vertex data: position (vec2) + color (vec3). A fixed C-style array
     // of floats. See HANDBOOK.md#c-style-arrays-and-sizeof
@@ -98,6 +98,11 @@ void Renderer::draw() {
     m_shader->bind();
     m_vao->bind();
     glDrawArrays(GL_TRIANGLES, 0, 3); // 3 vertices, one triangle
+}
+
+// Set the drawing rectangle to the whole framebuffer. See HANDBOOK.md#viewport
+void Renderer::onResize(int width, int height) {
+    glViewport(0, 0, width, height); // (x, y) origin at bottom-left, then size
 }
 
 } // namespace ashina

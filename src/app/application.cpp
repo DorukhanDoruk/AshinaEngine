@@ -9,6 +9,13 @@ Application::Application()
     : m_window(1280, 720, "AshinaEngine") {
     // GLEW must load after the window's context is current.
     m_renderer.init(m_window.handle());
+
+    // Forward resize events to the renderer's viewport. The lambda captures `this`
+    // so it can reach m_renderer. Safe to wire now: resize events only fire later,
+    // inside run(). See HANDBOOK.md#stdfunction-and-lambdas
+    m_window.setResizeCallback([this](int width, int height) {
+        m_renderer.onResize(width, height);
+    });
 }
 
 // The main loop: keep drawing frames until the window is closed.

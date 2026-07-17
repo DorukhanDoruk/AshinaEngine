@@ -30,6 +30,10 @@ public:
     // Draws the triangle.
     void draw();
 
+    // Resets the viewport to the given size. Called once at startup and again on
+    // every window resize. See HANDBOOK.md#viewport
+    void onResize(int width, int height);
+
 private:
     // Each unique_ptr exclusively owns its object and frees it automatically.
     // See HANDBOOK.md#smart-pointers-stdunique_ptr
